@@ -1,0 +1,32 @@
+{
+  "name": "teste-front-end",
+  "version": "1.0.0",
+  "description": "Creating a registraion form",
+  "main": "n",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "eslint": "^2.13.1",
+    "faker": "^4.1.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-inject": "^4.2.0",
+    "gulp-inject-string": "^1.1.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.1.0"
+  },
+  "keywords": [
+    "form"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ItamarSerafim/teste-form-no-framwork.git"
+  },
+  "author": "Itamar Serafim",
+  "license": "ISC"
+}

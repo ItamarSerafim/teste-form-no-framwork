@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Metas here: viewport, charset, description,  -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="This is just a web form">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+        
+        <title>Cadastro de...</title>       
+        <!--<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400" rel="stylesheet">-->
+        <link href="build/style.min.css" rel="stylesheet">
+    </head>
+    <body >
+        <!-- action="api/usuarios" The action could be like this-->
+        <form  method="POST" class="main-form" style="background-image: url('bckgd.pngi')" id="cadastro-usuario">
+            
+            <div class="form-group md-50">
+                <label for="Nome">Nome:</label><span data-message-for="Nome"></span>
+                <input 
+                    title="Digite o Nome" 
+                    type="text" 
+                    maxlength="45" 
+                    minlength="3" 
+                    onkeyup="validarMaxMinLength(this)" 
+                    class="form-control" 
+                    id="Nome" 
+                    name="Nome" 
+                    required>
+            </div>
+
+            <div class="form-group md-50">
+                <label for="Sobrenome">Sobrenome:</label><span data-message-for="Sobrenome"></span>
+                <input 
+                title="Digite o Sobrenome" 
+                onkeyup="validarMaxMinLength(this)" 
+                maxlength="60" 
+                minlength="3" 
+                type="text" 
+                class="form-control"                 
+                onkeyup="validarMaxMinLength(this)" 
+                id="Sobrenome" 
+                name="Sobrenome"
+                 required>
+            </div>
+
+            <div class="form-group md-50">
+                <label for="Genero">Gênero:</label>                
+                <div class="radio-group" role="radio-group">
+                    <input type="radio" value="masc" name="Genero" id="masc"/>
+                    <label for="masc" title="Gênero masculino" role="radio" > Masc</label>
+                    <input type="radio" value="fem" name="Genero" id="fem"/> 
+                    <label for="fem" role="radio" title="Gênero feminino"> Fem</label>
+                </div>
+            </div>  
+
+            <div class="form-group md-50">
+                <label for="DataNascimento">Data de Nascimento:</label><span data-message-for="DataNascimento"></span>
+                <input 
+                    title="Digite o Data de Nascimento" 
+                    type="date" 
+                    class="form-control" 
+                    id="DataNascimento" 
+                    name="DataNascimento" 
+                    placeholder="##/##/####" 
+                    min="1900-01-01" 
+                    max="2010-12-31" 
+                    onkeyup="DataNascKeyUp(this)"
+                    required
+                    onkeyup="dataNascKeyUp(this)"
+                    >
+            </div>
+
+            <div class="form-group md-50">
+                <label for="Email">E-mail:</label><span data-message-for="Email"></span>
+                <input 
+                title="Digite o E-mail" 
+                onkeydown="emailKeyDown(this)" 
+                onblur="emailKeyDown(this)" 
+                type="email" 
+                class="form-control" 
+                id="Email" 
+                name="Email" 
+                required>
+            </div>
+
+            <div class="form-group md-50">
+                <label for="ConfirmeEmail">Confirme seu e-mail:</label><span data-message-for="ConfirmeEmail"></span>
+                <input 
+                title="Digite o Confirme seu e-mail" 
+                 onkeydown="emailKeyDown(this)" 
+                 onblur="confirmaEmailOnBlur(this)" 
+                 type="text" 
+                 class="form-control" 
+                 id="ConfirmeEmail" 
+                 name="ConfirmeEmail" 
+                 required>
+            </div>
+
+            <div class="form-group md-50">
+                <label for="Celular">Telefone celular:</label>
+                <input 
+                title="Digite o telefone celular" 
+                type="text" 
+                class="form-control" 
+                id="Celular"
+                 name="Celular" required>
+            </div>
+
+            <div class="form-group md-50">
+                <label for="Telefone">Telefone fixo: (opcional):</label>
+                <input 
+                title="Digite o Telefone fixo" 
+                type="text" 
+                class="form-control" 
+                id="Telefone" 
+                name="Telefone" >
+            </div>
+
+            <div class="form-group md-50">
+                <label for="CPF">CPF:</label><span data-message-for="CPF"></span>
+                <input 
+                title="Digite o CPF" 
+                onkeyup="cpfKeyUp(this)" 
+                type="text" 
+                class="form-control" 
+                id="CPF" 
+                name="CPF" 
+                required>
+            </div>
+
+            <div class="form-group md-50">
+                <label for="CEP">CEP:</label><span data-message-for="CEP"></span>
+                <div class="form-group cep-wrap">
+                    <span class="loading hidden not-found" title="Cep não encontrado"><img src="assets/not-allowed.png" alt=""></span>
+                    <span class="loading hidden searching" title="procurando cep"><img src="assets/btn_process.gif" alt=""></span>
+                    <span class="loading valida-ok hidden" title="o cep é válido"><img src="assets/valida_ok.png" alt=""></span>
+                    <input 
+                    title="Digite o CEP" 
+                    onblur="cepBlur()" 
+                    onfocus="cepFocus()" 
+                    onkeyup="getEndereco(this.value)" 
+                    onchange="getEndereco(this.value)" 
+                    type="text" 
+                    class="form-control" 
+                    id="CEP" 
+                    name="CEP" 
+                    required>
+                </div>
+            </div>
+            
+
+            <div class="form-group md-50">
+                    <label for="Endereco">Endereço:</label>
+                    <input 
+                    title="Digite o Endereço" 
+                    type="text" 
+                    class="form-control" 
+                    id="Endereco" 
+                    name="Endereco" 
+                    required >
+                
+            </div>
+                
+            <div class="md-50 input-row"> 
+                
+                <div class="form-group flex-minor">
+                    <label for="Numero">Número:</label>
+                    <input 
+                    title="Digite o Número" 
+                    type="number" 
+                    min="1" 
+                    class="form-control" 
+                    id="Numero" 
+                    name="Numero" 
+                    required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="Complemento">Complemento:</label>
+                    <input 
+                    title="Digite o Complemento" 
+                    type="text" 
+                    class="form-control" 
+                    id="Complemento" 
+                    name="Complemento" 
+                    required>
+                </div>
+            </div>
+
+            <div class="form-group md-50">
+                <label for="Bairro">Bairro:</label>
+                <input 
+                title="Digite o Bairro" 
+                type="text" 
+                class="form-control" 
+                id="Bairro" 
+                name="Bairro" 
+                required>
+            </div>
+
+            
+            <div class="md-50 input-row"> 
+                <div class="form-group ">
+                    <label for="Cidade">Cidade:</label>
+                    <input 
+                    title="Digite o Cidade" 
+                    type="text" 
+                    class="form-control" 
+                    id="Cidade" 
+                    name="Cidade" 
+                    required>
+                </div>
+
+                <div class="form-group flex-minor">
+                    <label for="UF">UF:</label>
+                    <input title="Digite o UF" type="text" class="form-control" id="UF" name="UF" list="list-estados" required>
+                    <datalist id="list-estados">
+                        <option value="AC" label="Acre">
+                        <option value="AL" label="Alagoas">
+                        <option value="AP" label="Amapá">
+                        <option value="AM" label="Amazonas">
+                        <option value="BA" label="Bahia">
+                        <option value="CE" label="Ceará">
+                        <option value="DF" label="Distrito Federal">
+                        <option value="ES" label="Espírito Santo">
+                        <option value="GO" label="Goiás">
+                        <option value="MA" label="Maranhão">
+                        <option value="MT" label="Mato Grosso">
+                        <option value="MS" label="Mato Grosso do Sul">
+                        <option value="MG" label="Minas Gerais">
+                        <option value="PA" label="Pará">
+                        <option value="PB" label="Paraíba">
+                        <option value="PR" label="Paraná">
+                        <option value="PE" label="Pernambuco">
+                        <option value="PI" label="Piauí">
+                        <option value="RJ" label="Rio de Janeiro">
+                        <option value="RN" label="Rio Grande do Norte">
+                        <option value="RS" label="Rio Grande do Sul">
+                        <option value="RO" label="Rondônia">
+                        <option value="RR" label="Roraima">
+                        <option value="SC" label="Santa Catarina">
+                        <option value="SP" label="São Paulo">
+                        <option value="SE" label="Sergipe">
+                        <option value="TO" label="Tocantins">
+                    </datalist>
+                </div>
+            </div>        
+
+
+            <div class="form-group md-100">
+                <label for="Anexo">Anexar arquivo (3MB):</label><span data-message-for="Anexo"></span>
+                <input onclick="clickUpload('#Anexo')" id="file-surrogate" onkeydown="clickUpload('#Anexo')" title="Digite o Anexar arquivo (3MB)" type="text" class="form-control" name="Anexo_placeholder">
+                <input 
+                type="file" 
+                onchange="fileChange(this)" 
+                class="form-control hidden" 
+                id="Anexo" 
+                name="Anexo">
+            </div>
+            
+
+            <div class="form-group md-50">
+                <input title="Autorizo o envio de mensagens" type="checkbox" id="Autorizo-mensagens" name="Autorizo-mensagens" required>
+                <label for="Autorizo-mensagens" class="lb-check">Autorizo o envio de mensagens:</label>
+            </div>
+
+            <div class="form-group md-50">                
+                <input title="Digite o Estou de acordo com o regulamento" type="checkbox"  id="de-acordo-regulamento" name="de-acordo-regulamento" required>
+                <label for="de-acordo-regulamento">Estou de acordo com o regulamento:</label>
+            </div>
+            
+            <div class="form-group md-50"> 
+                <div class="form-messages">
+
+                </div>
+            </div>
+            <div class="form-group md-50 flex-row"> 
+                <div class="spacer"></div>
+                <button type="button" onclick="onFormSubmit()" class="primary" >Salvar</button>
+            </div>
+            
+            
+        </form>
+        <script src="build/scripts.min.js"></script>
+    </body>
+</html>
